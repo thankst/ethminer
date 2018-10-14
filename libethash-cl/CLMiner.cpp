@@ -452,8 +452,11 @@ void CLMiner::workLoop()
     catch (cl::Error const& _e)
     {
         cwarn << ethCLErrorHelper("OpenCL Error", _e);
+
         if (s_exit)
             exit(1);
+
+        throw _e;
     }
 }
 
@@ -821,11 +824,9 @@ bool CLMiner::init(int epoch)
             cllog << "Writing light cache buffer";
             m_queue[0].enqueueWriteBuffer(m_light[0], CL_TRUE, 0, lightSize, context.light_cache);
         }
-        catch (const char* &e)
-       // catch (cl::Error const& err)
+        catch (cl::Error const& err)
         {
-           // cwarn << ethCLErrorHelper("Creating DAG buffer failed", err);
-            cwarn << e;
+            cwarn << ethCLErrorHelper("Creating DAG buffer failed", err);
             return false;
         }
         // create buffer for header
