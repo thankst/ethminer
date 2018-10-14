@@ -320,7 +320,7 @@ void CLMiner::workLoop()
             {
                 // no need to read the abort flag.
                 m_queue[0].enqueueReadBuffer(m_searchBuffer[0], CL_TRUE,
-                    c_maxSearchResults * sizeof(results.rslt[0]), 2 * sizeof(results.count),
+                    c_maxSearchResults * sizeof((float)results.rslt[0]), 2 * sizeof(results.count),
                     (void*)&results.count);
                 if (results.count)
                 {
@@ -821,9 +821,11 @@ bool CLMiner::init(int epoch)
             cllog << "Writing light cache buffer";
             m_queue[0].enqueueWriteBuffer(m_light[0], CL_TRUE, 0, lightSize, context.light_cache);
         }
-        catch (cl::Error const& err)
+        catch (const char* &e)
+       // catch (cl::Error const& err)
         {
-            cwarn << ethCLErrorHelper("Creating DAG buffer failed", err);
+           // cwarn << ethCLErrorHelper("Creating DAG buffer failed", err);
+            cwarn << e;
             return false;
         }
         // create buffer for header
