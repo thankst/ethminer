@@ -455,8 +455,9 @@ void CLMiner::workLoop()
             updateHashRate(m_workgroupSize, results.hashCount);
             cwarn << "OpenCL log 9";
         }
-        m_queue[0].finish();
         cwarn << "OpenCL log 10";
+        m_queue[0].finish();
+        cwarn << "OpenCL log 11";
     }
     catch (cl::Error const& _e)
     {
