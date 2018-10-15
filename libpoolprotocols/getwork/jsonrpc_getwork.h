@@ -16,7 +16,7 @@ public:
     {
         Json::Value p;
         p = Json::nullValue;
-        Json::Value result = this->client->CallMethod("eth_getWork", p);
+        Json::Value result = this->client->CallMethod("etrue_getWork", p);
         if (result.isArray())
             return result;
         else
@@ -30,7 +30,7 @@ public:
         p.append(param1);
         p.append(param2);
         p.append(param3);
-        Json::Value result = this->client->CallMethod("eth_submitWork", p);
+        Json::Value result = this->client->CallMethod("etrue_submitWork", p);
         if (result.isBool())
             return result.asBool();
         else
@@ -42,7 +42,7 @@ public:
         Json::Value p;
         p.append(param1);
         p.append(param2);
-        Json::Value result = this->client->CallMethod("eth_submitHashrate", p);
+        Json::Value result = this->client->CallMethod("etrue_submitHashrate", p);
         if (result.isBool())
             return result.asBool();
         else
