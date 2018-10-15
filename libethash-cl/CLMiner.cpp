@@ -456,6 +456,7 @@ void CLMiner::workLoop()
             cwarn << "OpenCL log 9";
         }
         cwarn << "OpenCL log 10";
+        cwarn << m_queue[0];
         m_queue[0].finish();
         cwarn << "OpenCL log 11";
     }
