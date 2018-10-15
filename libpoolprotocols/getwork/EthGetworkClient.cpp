@@ -66,35 +66,29 @@ void EthGetworkClient::submitHashrate(string const& rate)
 
 void EthGetworkClient::submitSolution(const Solution& solution)
 {
-    // Immediately send found solution without wait for loop
-    if (m_connected.load(std::memory_order_relaxed))
-    {
-        try
-        {
+    try {
+        // Immediately send found solution without wait for loop
+        if (m_connected.load(std::memory_order_relaxed)) {
+
             bool accepted = p_client->eth_submitWork("0x" + toHex(solution.nonce),
-                "0x" + toString(solution.work.header), "0x" + toString(solution.mixHash));
-            if (accepted)
-            {
-                if (m_onSolutionAccepted)
-                {
+                                                     "0x" + toString(solution.work.header),
+                                                     "0x" + toString(solution.mixHash));
+            if (accepted) {
+                if (m_onSolutionAccepted) {
                     m_onSolutionAccepted(false);
                 }
-            }
-            else
-            {
-                if (m_onSolutionRejected)
-                {
+            } else {
+                if (m_onSolutionRejected) {
                     m_onSolutionRejected(false);
                 }
             }
         }
-        catch (jsonrpc::JsonRpcException const& _e)
+    } catch (jsonrpc::JsonRpcException const& _e)
         {
             cwarn << "Failed to submit solution.";
             cwarn << boost::diagnostic_information(_e);
         }
-    }
-}
+ }
 
 // Handles all getwork communication.
 void EthGetworkClient::workLoop()
