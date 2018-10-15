@@ -1,7 +1,7 @@
 [
-	{ "name": "eth_getWork", "params": [], "order": [], "returns": []},
-	{ "name": "eth_submitWork", "params": ["", "", ""], "order": [], "returns": true},
-	{ "name": "eth_submitHashrate", "params": ["", ""], "order": [], "returns": true},
-	{ "name": "eth_awaitNewWork", "params": [], "order": [], "returns": []},
-	{ "name": "eth_progress", "params": [], "order": [], "returns": true}
+	{ "name": "etrue_getWork", "params": [], "order": [], "returns": []},
+	{ "name": "etrue_submitWork", "params": ["", "", ""], "order": [], "returns": true},
+	{ "name": "etrue_submitHashrate", "params": ["", ""], "order": [], "returns": true},
+	{ "name": "etrue_awaitNewWork", "params": [], "order": [], "returns": []},
+	{ "name": "etrue_progress", "params": [], "order": [], "returns": true}
 ]
