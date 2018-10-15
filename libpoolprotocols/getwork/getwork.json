@@ -1,5 +1,5 @@
 [
-	{ "name": "eth_getWork", "params": [], "order": [], "returns": []},
-	{ "name": "eth_submitWork", "params": ["", "", ""], "order": [], "returns": true},
-	{ "name": "eth_submitHashrate", "params": ["", ""], "order": [], "returns": true}
+	{ "name": "etrue_getWork", "params": [], "order": [], "returns": []},
+	{ "name": "etrue_submitWork", "params": ["", "", ""], "order": [], "returns": true},
+	{ "name": "etrue_submitHashrate", "params": ["", ""], "order": [], "returns": true}
 ]
