@@ -321,7 +321,7 @@ void CLMiner::workLoop()
                 cwarn << "OpenCL log 1";
                 // no need to read the abort flag.
                 m_queue[0].enqueueReadBuffer(m_searchBuffer[0], CL_TRUE,
-                    c_maxSearchResults * sizeof((float)results.rslt[0]), 2 * sizeof(results.count),
+                    c_maxSearchResults * sizeof(results.rslt[0]), 2 * sizeof(results.count),
                     (void*)&results.count);
                 if (results.count)
                 {
