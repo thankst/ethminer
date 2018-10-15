@@ -318,14 +318,14 @@ void CLMiner::workLoop()
 
             if (m_queue.size())
             {
-                cwarn << ethCLErrorHelper("OpenCL log 1");
+                cwarn << "OpenCL log 1";
                 // no need to read the abort flag.
                 m_queue[0].enqueueReadBuffer(m_searchBuffer[0], CL_TRUE,
                     c_maxSearchResults * sizeof((float)results.rslt[0]), 2 * sizeof(results.count),
                     (void*)&results.count);
                 if (results.count)
                 {
-                    cwarn << ethCLErrorHelper("OpenCL log 2");
+                    cwarn << "OpenCL log 2";
 #ifdef DEV_BUILD
                     submitStart = std::chrono::steady_clock::now();
 #endif
@@ -344,7 +344,7 @@ void CLMiner::workLoop()
 
             if (current.header != w.header)
             {
-                cwarn << ethCLErrorHelper("OpenCL log 3");
+                cwarn << "OpenCL log 3";
                 // New work received. Update GPU data.
                 if (!w)
                 {
@@ -366,7 +366,7 @@ void CLMiner::workLoop()
                     init(w.epoch);
                     m_abortqueue.push_back(cl::CommandQueue(m_context[0], m_device));
                 }
-                cwarn << ethCLErrorHelper("OpenCL log 4");
+                cwarn << "OpenCL log 4";
                 // Upper 64 bits of the boundary.
                 const uint64_t target = (uint64_t)(u64)((u256)w.boundary >> 192);
                 assert(target > 0);
@@ -397,7 +397,7 @@ void CLMiner::workLoop()
 #endif
             }
 
-            cwarn << ethCLErrorHelper("OpenCL log 5");
+            cwarn << "OpenCL log 5";
             // Run the kernel.
             m_searchKernel.setArg(4, startNonce);
             m_queue[0].enqueueNDRangeKernel(
@@ -405,7 +405,7 @@ void CLMiner::workLoop()
 
             if (results.count)
             {
-                cwarn << ethCLErrorHelper("OpenCL log 6");
+                cwarn << "OpenCL log 6";
                 // Report results while the kernel is running.
                 for (uint32_t i = 0; i < results.count; i++)
                 {
@@ -415,7 +415,7 @@ void CLMiner::workLoop()
                         m_lastNonce = nonce;
                         if (s_noeval)
                         {
-                            cwarn << ethCLErrorHelper("OpenCL log 7");
+                            cwarn << "OpenCL log 7";
                             h256 mix;
                             memcpy(mix.data(), (char*)results.rslt[i].mix,
                                 sizeof(results.rslt[i].mix));
@@ -423,7 +423,7 @@ void CLMiner::workLoop()
                         }
                         else
                         {
-                            cwarn << ethCLErrorHelper("OpenCL log 8");
+                            cwarn << "OpenCL log 8";
                             Result r = EthashAux::eval(current.epoch, current.header, nonce);
                             if (r.value <= current.boundary)
                                 Farm::f().submitProof(
@@ -453,10 +453,10 @@ void CLMiner::workLoop()
 
             // Report hash count
             updateHashRate(m_workgroupSize, results.hashCount);
-            cwarn << ethCLErrorHelper("OpenCL log 9");
+            cwarn << "OpenCL log 9";
         }
         m_queue[0].finish();
-        cwarn << ethCLErrorHelper("OpenCL log 10");
+        cwarn << "OpenCL log 10";
     }
     catch (cl::Error const& _e)
     {
