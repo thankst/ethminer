@@ -9,7 +9,6 @@
 using namespace std;
 using namespace dev;
 using namespace eth;
-
 class EthGetworkClient : public PoolClient, Worker
 {
 public:
