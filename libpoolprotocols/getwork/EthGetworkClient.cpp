@@ -86,7 +86,7 @@ void EthGetworkClient::submitSolution(const Solution& solution)
     } catch (jsonrpc::JsonRpcException const& _e)
         {
             cwarn << "Failed to submit solution.";
-         //   cwarn << boost::diagnostic_information(_e);
+            cwarn << boost::diagnostic_information(_e);
         }
  }
 
