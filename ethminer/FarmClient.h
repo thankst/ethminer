@@ -16,7 +16,7 @@ class FarmClient : public jsonrpc::Client
         {
             Json::Value p;
             p = Json::nullValue;
-            Json::Value result = this->CallMethod("eth_getWork",p);
+            Json::Value result = this->CallMethod("etrue_getWork",p);
             if (result.isArray())
                 return result;
             else
@@ -28,7 +28,7 @@ class FarmClient : public jsonrpc::Client
             p.append(param1);
             p.append(param2);
             p.append(param3);
-            Json::Value result = this->CallMethod("eth_submitWork",p);
+            Json::Value result = this->CallMethod("etrue_submitWork",p);
             if (result.isBool())
                 return result.asBool();
             else
@@ -39,7 +39,7 @@ class FarmClient : public jsonrpc::Client
             Json::Value p;
             p.append(param1);
             p.append(param2);
-            Json::Value result = this->CallMethod("eth_submitHashrate",p);
+            Json::Value result = this->CallMethod("etrue_submitHashrate",p);
             if (result.isBool())
                 return result.asBool();
             else
@@ -49,7 +49,7 @@ class FarmClient : public jsonrpc::Client
         {
             Json::Value p;
             p = Json::nullValue;
-            Json::Value result = this->CallMethod("eth_awaitNewWork",p);
+            Json::Value result = this->CallMethod("etrue_awaitNewWork",p);
             if (result.isArray())
                 return result;
             else
@@ -59,7 +59,7 @@ class FarmClient : public jsonrpc::Client
         {
             Json::Value p;
             p = Json::nullValue;
-            Json::Value result = this->CallMethod("eth_progress",p);
+            Json::Value result = this->CallMethod("etrue_progress",p);
             if (result.isBool())
                 return result.asBool();
             else
