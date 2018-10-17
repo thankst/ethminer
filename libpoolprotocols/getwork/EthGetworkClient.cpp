@@ -87,6 +87,7 @@ void EthGetworkClient::submitSolution(const Solution& solution)
         {
             cwarn << "Failed to submit solution.";
             cwarn << boost::diagnostic_information(_e);
+            disconnect();
         }
  }
 
