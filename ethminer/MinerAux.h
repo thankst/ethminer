@@ -824,9 +824,11 @@ private:
 				}
 				cnote << "Solution found; Submitting to" << _remote << "...";
 				cnote << "  Nonce:" << solution.nonce.hex();
+				cnote << "  headerHash:" << current.headerHash.hex();
+				cnote << "  mixHash:" << solution.mixHash.hex();
 				if (EthashAux::eval(current.seedHash, current.headerHash, solution.nonce).value < current.boundary)
 				{
-					bool ok = prpc->eth_submitWork("0x" + toString(solution.nonce), "0x" + toString(current.headerHash), "0x" + toString(solution.mixHash));
+					bool ok = prpc->eth_submitWork("0x" + toString(solution.nonce),  "0x" + toString(solution.mixHash), "0x" + toString(current.headerHash));
 					if (ok) {
 						cnote << "B-) Submitted and accepted.";
 						f.acceptedSolution(false);
