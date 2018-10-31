@@ -15,9 +15,10 @@ extern "C" {
 #endif
 
 // compile time settings
-#define NODE_WORDS (64/4)
-#define MIX_WORDS (ETHASH_MIX_BYTES/4)
-#define MIX_NODES (MIX_WORDS / NODE_WORDS)
+#define NODE_WORDS (64/4) //8
+
+#define MIX_WORDS (ETHASH_MIX_BYTES/4)//32
+#define MIX_NODES (MIX_WORDS / NODE_WORDS) //4
 #include <stdint.h>
 
 typedef union node {

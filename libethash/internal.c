@@ -131,7 +131,43 @@ void ethash_calculate_dag_item(
 	SHA3_512(ret->bytes, ret->bytes, sizeof(node));
 }
 
-static bool ethash_hash(
+
+
+static bool ethash_hash_t(
+        ethash_return_value_t* ret,
+        node const* full_nodes,
+        ethash_light_t const light,
+        uint64_t full_size,
+        ethash_h256_t const header_hash,
+        uint64_t const nonce
+){
+
+  //  ethash_return_value_t* ret;
+  //  uint64_t const nonce;
+   // ethash_h256_t const header_hash;
+  //  uint64_t full_size=1;
+
+    GoUint64 p0value[full_size] ;
+
+    GoSlice p0 ={p0value, sizeof(GoUint64),full_size} ;
+
+    GoSlice p1 ;
+    memcpy(p1.data, &header_hash, sizeof(header_hash));
+
+    GoUint64 p2= nonce;
+    // fchainmining( plookup []uint64, header []byte, nonce uint64) ([]byte, []byte)
+    // fchainminingReturn result  = fchainmining(p0,p1,p2);
+    GoSlice r0 = fchainmining(p0,p1,p2).r0;
+    GoSlice r1 = fchainmining(p0,p1,p2).r1;
+    memcpy(&ret->mix_hash, r0.data, sizeof(r0.data));
+    memcpy(&ret->result, r1.data, sizeof(r1.data)); ;
+    ret->success=true;
+    return true;
+
+
+}
+
+/**static bool ethash_hash(
 	ethash_return_value_t* ret,
 	node const* full_nodes,
 	ethash_light_t const light,
@@ -146,7 +182,8 @@ static bool ethash_hash(
 
 	// pack hash and nonce together into first 40 bytes of s_mix
 	assert(sizeof(node) * 8 == 512);
-	node s_mix[MIX_NODES + 1];
+
+	node s_mix[MIX_NODES + 1];  //5
 	memcpy(s_mix[0].bytes, &header_hash, 32);
 	fix_endian64(s_mix[0].double_words[4], nonce);
 
@@ -212,7 +249,7 @@ static bool ethash_hash(
 	// final Keccak hash
 	SHA3_256(&ret->result, s_mix->bytes, 64 + 32); // Keccak-256(s + compressed_mix)
 	return true;
-}
+}**/
 
 ethash_h256_t ethash_get_seedhash(uint64_t block_number)
 {
@@ -290,3 +327,5 @@ ethash_return_value_t ethash_light_compute(
 	uint64_t full_size = ethash_get_datasize(light->block_number);
 	return ethash_light_compute_internal(light, full_size, header_hash, nonce);
 }
+
+
