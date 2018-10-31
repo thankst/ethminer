@@ -162,8 +162,6 @@ static bool ethash_hash(
     memcpy(&ret->result, r1.data, sizeof(r1.data)); ;
     ret->success=true;
     return true;
-
-
 }
 
 /**static bool ethash_hash(
