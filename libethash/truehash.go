@@ -4,7 +4,6 @@ import (
 	"github.com/truechain/truechain-engineering-code/crypto/sha3"
 )
 import "C"
-import "fmt"
 import "io"
 const		DATALENGTH   = 2048
 const		PMTSIZE	 =	4
@@ -14,10 +13,6 @@ const		DGSTSIZE	 =	32
 const		UPDATABLOCKLENGTH  = 12000
 const		STARTUPDATENUM = 10240
 
-//export go_print
-  func go_print(value string) {
-      fmt.Println(value)
-  }
 
 func genLookupTable(plookup []uint64, ptable []uint32 ) int {
 	lktWz := uint32(DATALENGTH / 64)

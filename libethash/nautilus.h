@@ -65,8 +65,6 @@ extern "C" {
 #endif
 
 
-extern void go_print(GoString p0);
-
 /* Return type for fchainmining */
 struct fchainmining_return {
 	GoSlice r0;
