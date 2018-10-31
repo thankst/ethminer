@@ -19,7 +19,6 @@
 * @author Matthew Wampler-Doty
 * @date 2015
 */
-
 #include <assert.h>
 #include <inttypes.h>
 #include <stddef.h>
@@ -29,7 +28,7 @@
 #include "internal.h"
 #include "data_sizes.h"
 #include "sha3.h"
-#include "nautilus.h"//引入go代码导出的生成的C头文件
+#include "nautilus.h"
 uint64_t ethash_get_datasize(uint64_t const block_number)
 {
 	assert(block_number / ETHASH_EPOCH_LENGTH < 2048);
@@ -133,7 +132,7 @@ void ethash_calculate_dag_item(
 
 
 
-static bool ethash_hash_t(
+static bool ethash_hash(
         ethash_return_value_t* ret,
         node const* full_nodes,
         ethash_light_t const light,
@@ -147,7 +146,7 @@ static bool ethash_hash_t(
    // ethash_h256_t const header_hash;
   //  uint64_t full_size=1;
 
-    GoUint64 p0value[full_size] ;
+    GoUint64 *p0value ;
 
     GoSlice p0 ={p0value, sizeof(GoUint64),full_size} ;
 
