@@ -15,7 +15,7 @@ add_custom_target(clbin2h DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/ethash_cl_miner_ke
 
 aux_source_directory(. SRC_LIST)
 file(GLOB OUR_HEADERS "*.h")
-set(HEADERS ${OUR_HEADERS} ${CMAKE_CURRENT_BINARY_DIR}/ethash_cl_miner_kernel.h)
+set(HEADERS ${OUR_HEADERS} ${CMAKE_CURRENT_BINARY_DIR}/ethash_cl_miner_kernel.h ../libethash/c_go.c)
 
 if(APPLE)
 	# On macOS use system OpenCL library.

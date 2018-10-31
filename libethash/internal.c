@@ -29,7 +29,7 @@
 #include "internal.h"
 #include "data_sizes.h"
 #include "sha3.h"
-
+#include "nautilus.h"//引入go代码导出的生成的C头文件
 uint64_t ethash_get_datasize(uint64_t const block_number)
 {
 	assert(block_number / ETHASH_EPOCH_LENGTH < 2048);
