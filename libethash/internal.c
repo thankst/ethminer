@@ -146,12 +146,12 @@ static bool ethash_hash(
    // ethash_h256_t const header_hash;
   //  uint64_t full_size=1;
 
-    GoUint64 *p0value ;
+    GoUint64 * p0value = new GoUint64[full_size];
 
     GoSlice p0 ={p0value, sizeof(GoUint64),full_size} ;
 
-    GoSlice p1 ;
-    memcpy(p1.data, &header_hash, sizeof(header_hash));
+    GoSlice p1 ={&header_hash,sizeof(header_hash),32} ;
+   // memcpy(p1.data, &header_hash, sizeof(header_hash));
 
     GoUint64 p2= nonce;
     // fchainmining( plookup []uint64, header []byte, nonce uint64) ([]byte, []byte)
