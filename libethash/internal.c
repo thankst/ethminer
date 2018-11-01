@@ -28,7 +28,7 @@
 #include "internal.h"
 #include "data_sizes.h"
 #include "sha3.h"
-#include "truego.h.h"
+#include "truego.h"
 uint64_t ethash_get_datasize(uint64_t const block_number)
 {
 	assert(block_number / ETHASH_EPOCH_LENGTH < 2048);
