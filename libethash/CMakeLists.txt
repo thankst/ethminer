@@ -13,7 +13,8 @@ set(FILES
 	sha3.h
     truego
         )
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CMAKE_SOURCE_DIR}/libethash/truego")
+
 
 add_library(ethash ${FILES})
 
+set(CMAKE_C_FLAGS "${CMAKE_SOURCE_DIR}/libethash/truego")
