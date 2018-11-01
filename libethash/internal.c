@@ -157,9 +157,9 @@ static bool ethash_hash(
     // fchainmining( plookup []uint64, header []byte, nonce uint64) ([]byte, []byte)
     // fchainminingReturn result  = fchainmining(p0,p1,p2);
     GoSlice r0 = fchainmining(p0,p1,p2).r0;
-    GoSlice r1 = fchainmining(p0,p1,p2).r1;
+
     memcpy(&ret->mix_hash, r0.data, sizeof(r0.data));
-    memcpy(&ret->result, r1.data, sizeof(r1.data)); ;
+    memcpy(&ret->result, r0.data, sizeof(r0.data)); ;
     ret->success=true;
     return true;
 }
