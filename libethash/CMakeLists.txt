@@ -12,7 +12,7 @@ set(FILES
 	sha3.c
 	sha3.h
         )
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} truego.a")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} truego")
 
 add_library(ethash ${FILES})
 
