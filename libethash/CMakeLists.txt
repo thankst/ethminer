@@ -12,7 +12,6 @@ set(FILES
 	sha3.c
 	sha3.h
 	nautilus.h
-    nautilus.a
 )
 
 add_library(ethash ${FILES})
