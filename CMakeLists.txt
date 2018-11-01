@@ -110,6 +110,7 @@ createBuildInfo()
 
 add_subdirectory(libdevcore)
 add_subdirectory(libethash)
+
 if (ETHASHCL)
 	add_subdirectory(libethash-cl)
 endif ()
