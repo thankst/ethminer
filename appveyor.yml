@@ -12,13 +12,9 @@ configuration:
 cache:
   - C:/.hunter/_Base/Cache -> cmake/Hunter/config.cmake
 
-install: |
-  appveyor DownloadFile https://github.com/ethereum/cpp-dependencies/releases/download/cache/CUDA-v8.0-WindowsServer2012.zip
-  7z x CUDA-v8.0-WindowsServer2012.zip -oC:/
-  set PATH=%PATH%;C:/CUDA/v8.0/bin
-  nvcc -V
+
 before_build:
-  - cmake -G "Visual Studio 14 2015 Win64" -H. -Bbuild -DETHASHCUDA=ON
+  - cmake -G "Visual Studio 14 2015 Win64" -H. -Bbuild -DETHASHCUDA=OFF
 build_script:
   - cmake --build build --config %CONFIGURATION%
 after_build:

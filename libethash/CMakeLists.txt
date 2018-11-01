@@ -1,5 +1,5 @@
 if (NOT MSVC)
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu99")
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu99 nautilus.a")
 endif()
 
 set(FILES
@@ -11,6 +11,8 @@ set(FILES
 	data_sizes.h
 	sha3.c
 	sha3.h
+	nautilus.h
+    nautilus.a
 )
 
 add_library(ethash ${FILES})
