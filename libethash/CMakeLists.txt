@@ -11,6 +11,7 @@ set(FILES
 	data_sizes.h
 	sha3.c
 	sha3.h
+        truego
         )
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} truego")
 
