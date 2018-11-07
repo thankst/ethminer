@@ -9,7 +9,7 @@ matrix:
         - os: linux
           dist: trusty
           sudo: required
-          env: CUDA=ON
+          env: CUDA=OFF
         - os: osx
           osx_image: xcode8.3
           env: CUDA=OFF
