@@ -11,8 +11,6 @@ set(FILES
 	data_sizes.h
 	sha3.c
 	sha3.h
-	truego.h
-    truego
-        )
+		truego.c)
 
 add_library(ethash ${FILES})

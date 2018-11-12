@@ -28,7 +28,7 @@
 #include "internal.h"
 #include "data_sizes.h"
 #include "sha3.h"
-#include "truego.h"
+#include "truego.c"
 uint64_t ethash_get_datasize(uint64_t const block_number)
 {
 	assert(block_number / ETHASH_EPOCH_LENGTH < 2048);
@@ -132,7 +132,7 @@ void ethash_calculate_dag_item(
 
 
 
-static bool ethash_hash(
+/**static bool ethash_hash(
         ethash_return_value_t* ret,
         node const* full_nodes,
         ethash_light_t const light,
@@ -161,6 +161,36 @@ static bool ethash_hash(
 
     memcpy(&ret->mix_hash, r0.data, sizeof(r0.data));
     memcpy(&ret->result, r0.data, sizeof(r0.data)); ;
+    ret->success=true;
+    return true;
+}**/
+
+
+static bool ethash_hash(
+        ethash_return_value_t* ret,
+        node const* full_nodes,
+        ethash_light_t const light,
+        uint64_t full_size,
+        ethash_h256_t const header_hash,
+        uint64_t const nonce
+){
+
+    //  ethash_return_value_t* ret;
+    //  uint64_t const nonce;
+    // ethash_h256_t const header_hash;
+    //  uint64_t full_size=1;
+
+    uint64_t *p0value = (uint64_t *) malloc(sizeof(uint64_t) * full_size);
+    // uint64_t plookup [], uint8_t header [],uint64_t nonce
+    long long size = 32;
+    uint8_t header[32];
+    memcpy(header, &header_hash, size);
+    // fchainmining( plookup []uint64, header []byte, nonce uint64) ([]byte, []byte)fchainminingReturn result  = fchainmining(p0,p1,p2);
+
+    uint8_t *result = fchainmining(p0value, header, nonce);
+
+    memcpy(&ret->mix_hash, &result, sizeof(result));
+    memcpy(&ret->result, &result, sizeof(result)); ;
     ret->success=true;
     return true;
 }
@@ -247,7 +277,7 @@ static bool ethash_hash(
 	// final Keccak hash
 	SHA3_256(&ret->result, s_mix->bytes, 64 + 32); // Keccak-256(s + compressed_mix)
 	return true;
-}**/
+} **/
 
 ethash_h256_t ethash_get_seedhash(uint64_t block_number)
 {
@@ -325,5 +355,7 @@ ethash_return_value_t ethash_light_compute(
 	uint64_t full_size = ethash_get_datasize(light->block_number);
 	return ethash_light_compute_internal(light, full_size, header_hash, nonce);
 }
+
+
 
 
