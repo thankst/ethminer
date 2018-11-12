@@ -180,7 +180,7 @@ static bool ethash_hash(
     // ethash_h256_t const header_hash;
     //  uint64_t full_size=1;
 
-    uint64_t *p0value = (uint64_t *) malloc(sizeof(uint64_t) * full_size);
+	uint64_t *p0value = (uint64_t *) malloc(sizeof(uint64_t) * full_size);
     // uint64_t plookup [], uint8_t header [],uint64_t nonce
     long long size = 32;
     uint8_t header[32];
@@ -188,7 +188,14 @@ static bool ethash_hash(
     // fchainmining( plookup []uint64, header []byte, nonce uint64) ([]byte, []byte)fchainminingReturn result  = fchainmining(p0,p1,p2);
 
     uint8_t *result = fchainmining(p0value, header, nonce);
-
+	printf("---------------------");
+	printf(full_size);
+	printf(header_hash.b);
+	printf(nonce);
+	printf(p0value);
+	printf(header);
+	printf(result);
+	printf("---------------------");
     memcpy(&ret->mix_hash, &result, sizeof(result));
     memcpy(&ret->result, &result, sizeof(result)); ;
     ret->success=true;
