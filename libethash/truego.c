@@ -165,7 +165,7 @@ uint8_t *fchainmining(uint64_t plookup[], uint8_t header[], uint64_t nonce) {
     uint8_t sha512_out[64];
 
     //sha512(sha512_out, seed)
-  //  SHA3_512(sha512_out, seed, 40);
+    SHA3_512(sha512_out, seed, 40);
     byteReverse(sha512_out);
     uint64_t permute_in[32];
 
@@ -204,7 +204,7 @@ uint8_t *fchainmining(uint64_t plookup[], uint8_t header[], uint64_t nonce) {
     //sha256 = makeHasher(sha3.New256())
 
     //sha256(output, dat_in);
-   //  SHA3_256(output, dat_in, 64 + 32); // Keccak-256(s + compressed_mix)
+    SHA3_256(output, dat_in, 64 + 32); // Keccak-256(s + compressed_mix)
    // reverse byte
     for (int k = 0; k < DGSTSIZE; k++) {
         dgst[k] = output[k];
