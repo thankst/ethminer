@@ -139,7 +139,7 @@ int byteReverse(uint8_t sha512_out[]) {
 
 uint8_t *fchainmining(uint64_t plookup[], uint8_t header[], uint64_t nonce) {
     uint8_t seed[64];
-    uint8_t output[DGSTSIZE];
+    uint8_t output[32];
 
     uint32_t val0 = (nonce & 0xFFFFFFFF);
     uint32_t val1 = (nonce >> 32);
@@ -155,7 +155,7 @@ uint8_t *fchainmining(uint64_t plookup[], uint8_t header[], uint64_t nonce) {
         val1 >>= 8;
     }
     //32
-    uint8_t dgst[DGSTSIZE];
+    uint8_t dgst[32];
     //8-40
     for (int k = 0; k < HEADSIZE; k++) {
         seed[k + 8] = header[k];
