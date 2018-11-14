@@ -297,8 +297,16 @@ bool ethash_cuda_miner::init(ethash_light_t _light, uint8_t const* _lightData, u
 
 		if (!*hostDAG)
 		{
+			cout  << ".................................."<< endl;
+			cout  << "!*hostDAG"<< endl;
+			cout  << "dagSize" << dagSize << endl;
+			cout  << "s_gridSize" << s_gridSize << endl;
+			cout  << "s_blockSize" << s_blockSize << endl;
+			cout  << "m_streams[0]" << m_streams[0] << endl;
+			cout  << "device_num" << device_num << endl;
+			cout  << ".................................."<< endl;
 			cout << "Generating DAG for GPU #" << device_num << endl;
-            cout  << dagSize << s_gridSize <<  s_blockSize << m_streams[0] <<  device_num << endl;
+
 			ethash_generate_dag(dagSize, s_gridSize, s_blockSize, m_streams[0], device_num);
 
 			if (_cpyToHost)

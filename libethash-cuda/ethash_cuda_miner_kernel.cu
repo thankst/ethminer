@@ -126,12 +126,7 @@ void ethash_generate_dag(
 	int device
 	)
 {
-	printf("------------------------");
-    printf("dag_size:u%",dag_size);
-    printf("blocks:u%",blocks);
-    printf("threads:u%",threads);
-    printf("device:d%",device);
-	printf("------------------------");
+
 	uint32_t const work = (uint32_t)(dag_size / sizeof(hash64_t));
 
 	uint32_t fullRuns = work / (blocks * threads);
