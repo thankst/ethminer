@@ -311,7 +311,7 @@ void ethash_cuda_miner::search(uint8_t const* header, uint64_t target, search_ho
 {
 
     cout  << "ethash_cuda_miner::search"<< endl;
-    cout  << header << target <<  hook << _ethStratum <<  _startN << endl;
+    cout  << header << target << _ethStratum <<  _startN << endl;
 
 	bool initialize = false;
 	bool exit = false;
