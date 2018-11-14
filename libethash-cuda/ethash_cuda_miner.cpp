@@ -280,6 +280,7 @@ bool ethash_cuda_miner::init(ethash_light_t _light, uint8_t const* _lightData, u
 		if (!*hostDAG)
 		{
 			cout << "Generating DAG for GPU #" << device_num << endl;
+            cout  << dagSize << s_gridSize <<  s_blockSize << m_streams[0] <<  device_num << endl;
 			ethash_generate_dag(dagSize, s_gridSize, s_blockSize, m_streams[0], device_num);
 
 			if (_cpyToHost)
@@ -308,6 +309,10 @@ bool ethash_cuda_miner::init(ethash_light_t _light, uint8_t const* _lightData, u
 
 void ethash_cuda_miner::search(uint8_t const* header, uint64_t target, search_hook& hook, bool _ethStratum, uint64_t _startN)
 {
+
+    cout  << "ethash_cuda_miner::search"<< endl;
+    cout  << header << target <<  hook << _ethStratum <<  _startN << endl;
+
 	bool initialize = false;
 	bool exit = false;
 	if (memcmp(&m_current_header, header, sizeof(hash32_t)))
@@ -369,6 +374,8 @@ void ethash_cuda_miner::search(uint8_t const* header, uint64_t target, search_ho
 			for (unsigned int j = 0; j < found_count; j++)
 				nonces[j] = nonce_base + buffer[j + 1];
 		}
+        cout  << "run_ethash_search"<< endl;
+        cout  << s_gridSize << s_blockSize <<  m_sharedBytes << stream <<  buffer << m_current_nonce<<  m_parallelHash <<endl;
 		run_ethash_search(s_gridSize, s_blockSize, m_sharedBytes, stream, buffer, m_current_nonce, m_parallelHash);
 		if (m_current_index >= s_numStreams)
 		{
