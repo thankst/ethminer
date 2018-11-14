@@ -130,8 +130,18 @@ bool ethash_cuda_miner::configureGPU(
 	uint64_t _currentBlock
 	)
 {
+
 	try
 	{
+		cout  << "ethash_cuda_miner::configureGPU"<< endl;
+		cout  << "_devices" << _devices << endl
+		cout  << "_blockSize" << _blockSize << endl
+		cout  << "_gridSize" << _gridSize << endl
+		cout  << "_numStreams" << _numStreams << endl
+		cout  << "_extraGPUMemory" << _extraGPUMemory << endl
+		cout  << "_scheduleFlag" << _scheduleFlag << endl
+		cout  << "_currentBlock" << _currentBlock << endl
+
 		s_blockSize = _blockSize;
 		s_gridSize = _gridSize;
 		s_extraRequiredGPUMem = _extraGPUMemory;
@@ -224,6 +234,14 @@ bool ethash_cuda_miner::init(ethash_light_t _light, uint8_t const* _lightData, u
 {
 	try
 	{
+		cout  << "ethash_cuda_miner::init"<< endl;
+		cout  << "_light" << _light << endl
+		cout  << "_lightData" << _lightData << endl
+		cout  << "_lightSize" << _lightSize << endl
+		cout  << "_deviceId" << _deviceId << endl
+		cout  << "_cpyToHost" << _cpyToHost << endl
+		cout  << "hostDAG" << hostDAG << endl
+
 		int device_count = getNumDevices();
 
 		if (device_count == 0)
@@ -311,8 +329,10 @@ void ethash_cuda_miner::search(uint8_t const* header, uint64_t target, search_ho
 {
 
     cout  << "ethash_cuda_miner::search"<< endl;
-    cout  << header << target << _ethStratum <<  _startN << endl;
-
+    cout  << "header" << header << endl ;
+	cout  << "target" << target << endl
+	cout  << "_ethStratum" << _ethStratum << endl
+	cout  << "_startN" << _startN << endl
 	bool initialize = false;
 	bool exit = false;
 	if (memcmp(&m_current_header, header, sizeof(hash32_t)))
@@ -375,8 +395,14 @@ void ethash_cuda_miner::search(uint8_t const* header, uint64_t target, search_ho
 				nonces[j] = nonce_base + buffer[j + 1];
 		}
         cout  << "run_ethash_search"<< endl;
-        cout  << s_gridSize << s_blockSize <<  m_sharedBytes << stream <<  buffer << m_current_nonce<<  m_parallelHash <<endl;
-		run_ethash_search(s_gridSize, s_blockSize, m_sharedBytes, stream, buffer, m_current_nonce, m_parallelHash);
+		cout  << "s_gridSize" << s_gridSize << endl
+		cout  << "s_blockSize" << s_blockSize << endl
+		cout  << "m_sharedBytes" << m_sharedBytes << endl
+		cout  << "stream" << stream << endl
+		cout  << "buffer" << buffer << endl
+		cout  << "m_current_nonce" << _startN << endl
+		cout  << "m_parallelHash" << _startN << endl
+        run_ethash_search(s_gridSize, s_blockSize, m_sharedBytes, stream, buffer, m_current_nonce, m_parallelHash);
 		if (m_current_index >= s_numStreams)
 		{
 			exit = found_count && hook.found(nonces, found_count);
